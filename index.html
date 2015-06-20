@@ -18,7 +18,7 @@
                         radioChangedCallback: '&'
                     },
                     restrict: 'E',
-                    template: '<div ng-init="radioModel=false"><b>{{label}}</b> Zobraz:<input type="radio" ng-attr-name="{{r+id}}" value="true" ng-value="true" ng-change="radioChanged()" ng-model="radioModel" checked>Skry:<input type="radio" ng-change="radioChanged()" ng-model="radioModel" ng-attr-name="{{r+id}}" ng-value="false"><input ng-model="text" ng-show="radioModel"></div>',
+                    template: '<div ng-init="radioModel=false"><b>{{::label}}</b> Zobraz:<input type="radio" ng-attr-name="{{r+id}}" value="true" ng-value="true" ng-change="radioChanged()" ng-model="radioModel" checked>Skry:<input type="radio" ng-change="radioChanged()" ng-model="radioModel" ng-attr-name="{{r+id}}" ng-value="false"><input ng-model="text" ng-show="radioModel"></div>',
                     link: function (scope, element, attrs, controllers) {
 
 
