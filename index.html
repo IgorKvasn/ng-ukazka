@@ -5,13 +5,6 @@
 }
 </head>
 
-<body>
-<div ng-app="myApp" ng-controller="MainController" ng-cloak>
-    Pocet zobrazenych: {{selectedCount}}
-    
-    <test-dir ng-repeat="elem in range(0,100)" id="{{$index}}" label="ja som cislo {{$index}}" radio-changed-callback="changeRadio(newVal)"></test-dir>
-</div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js">
 
 <script>
@@ -57,6 +50,14 @@ angular.module('ui.directives', []).directive('testDir',
     }
 });
 </script>
+
+<body>
+<div ng-app="myApp" ng-controller="MainController" ng-cloak>
+    Pocet zobrazenych: {{selectedCount}}
+    
+    <test-dir ng-repeat="elem in range(0,100)" id="{{$index}}" label="ja som cislo {{$index}}" radio-changed-callback="changeRadio(newVal)"></test-dir>
+</div>
+
 
 </body>
 </html>
