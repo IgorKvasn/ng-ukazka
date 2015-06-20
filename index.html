@@ -1,0 +1,62 @@
+<html>
+<head>
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+</head>
+
+<body>
+<div ng-app="myApp" ng-controller="MainController" ng-cloak>
+    Pocet zobrazenych: {{selectedCount}}
+    
+    <test-dir ng-repeat="elem in range(0,100)" id="{{$index}}" label="ja som cislo {{$index}}" radio-changed-callback="changeRadio(newVal)"></test-dir>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js">
+
+<script>
+angular.module('myApp', ['ui.directives']);
+
+angular.module('ui.directives', []).directive('testDir', 
+    function() {
+      return {
+        scope:{
+            label:'@',
+            id:'@',
+            radioChangedCallback:'&'
+        },
+        restrict: 'E',
+          template:'<div ng-init="radioModel=false"><b>{{label}}</b> Zobraz:<input type="radio" ng-attr-name="{{r+id}}" value="true" ng-value="true" ng-change="radioChanged()" ng-model="radioModel" checked>Skry:<input type="radio" ng-change="radioChanged()" ng-model="radioModel" ng-attr-name="{{r+id}}" ng-value="false"><input ng-model="text" ng-show="radioModel"></div>',
+        link: function(scope, element, attrs, controllers) {
+            
+            
+            scope.radioChanged = function(){
+                scope.radioChangedCallback({newVal:scope.radioModel});
+            }
+            
+        }
+      };
+    }
+  )
+.controller('MainController', function ($scope) { 
+  $scope.range = function(min, max){
+    var input = [];
+    for (var i = min; i <= max; i += 1) input.push(i);
+    return input;
+  };
+
+    $scope.selectedCount = 0;
+    $scope.changeRadio = function(newVal){
+      
+        if (newVal){
+          $scope.selectedCount++;
+        }else{
+          $scope.selectedCount--;
+        }
+      
+    }
+});
+</script>
+
+</body>
+</html>
